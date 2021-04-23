@@ -1,8 +1,12 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import logo from "./logo.svg";
 import { Button, Intent, Spinner } from "@blueprintjs/core";
-import './App.scss';
+import "./App.scss";
+import CustomButton from "./components/CustomButton/CustomButton";
 
 function App() {
+  const [appState, setAppState] = useState("");
+
   return (
     <div className="App">
       <header className="App-header">
@@ -20,7 +24,18 @@ function App() {
         </a>
         <Button intent={Intent.PRIMARY}>Button</Button>
         <Button intent={Intent.NONE}>Button</Button>
-        <Spinner intent={Intent.PRIMARY}/>
+        <Spinner intent={Intent.PRIMARY} />
+        <CustomButton
+          intent={Intent.PRIMARY}
+          fill={false}
+          onClick={(e: any) => {
+            console.log("Hello", e);
+            setAppState("Button Clicked")
+          }}
+        >
+          Custom
+        </CustomButton>
+        <p>{appState}</p>
       </header>
     </div>
   );
